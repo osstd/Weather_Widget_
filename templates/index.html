@@ -1,136 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Weather Widget</title>
     <link
-      rel="icon"
-      href="{{ url_for('static', filename='cloudy.png') }}"
-      type="image/x-icon"
+            rel="icon"
+            href="{{ url_for('static', filename='cloudy.png') }}"
+            type="image/x-icon"
     />
     <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='styles/styles.css')}}"
+            rel="stylesheet"
+            href="{{url_for('static', filename='styles/styles.css')}}"
     />
-  </head>
-  <script>
+</head>
+
+<script>
     {% if data %}
     var wData = {{data|tojson|safe}};
     {% endif %}
     let display = {{ display | default("false")}};
     let units = "{{ units | default("metric")}}";
-  </script>
-  <body>
-    <div class="card" id="weather-card">
-      <form name="input" action="{{url_for('home')}}" method="post">
+
+</script>
+
+<body>
+<div class="preloader" data-preloader>
+    <div class="preloader-circle"></div>
+</div>
+
+<div class="card" id="weather-card">
+    <form name="input" action="{{url_for('home')}}" method="post">
         <div class="search">
-          <input
-            type="text"
-            name="city"
-            placeholder="enter city name"
-            spellcheck="false"
-          />
-          <button type="submit" name="c" class="c">
-            <img
-              src="{{url_for('static', filename='assets/images/c.png')}}"
-              alt=""
+            <input
+                    type="text"
+                    name="city"
+                    placeholder="enter city name"
+                    spellcheck="false"
             />
-          </button>
-          <button type="submit" name="f" class="f">
-            <img
-              src="{{url_for('static', filename='assets/images/f.png')}}"
-              alt=""
-            />
-          </button>
+            <button type="submit" name="c" class="c">
+                <img
+                        src="{{url_for('static', filename='assets/images/c.png')}}"
+                        alt=""
+                />
+            </button>
+            <button type="submit" name="f" class="f">
+                <img
+                        src="{{url_for('static', filename='assets/images/f.png')}}"
+                        alt=""
+                />
+            </button>
         </div>
-      </form>
-      <div class="error">
+    </form>
+    <div class="error">
         {% with messages = get_flashed_messages() %} {% if messages %} {% for
         message in messages %} {{ message }} {% endfor %} {% endif %} {% endwith
         %}
-      </div>
-      <div class="weather">
+    </div>
+    <div class="weather">
         <img
-          src="{{url_for('static', filename='assets/images/rain.png')}}"
-          class="weather-icon"
+                src="{{url_for('static', filename='assets/images/rain.png')}}"
+                class="weather-icon"
         />
         <h1 class="temp">22 °C</h1>
         <h2 class="city">New York</h2>
         <h3 class="description">Cloudy</h3>
         <h4 class="feels">Feels like 22 °C</h4>
         <div class="details">
-          <div class="col">
-            <img
-              src="{{url_for('static', filename='assets/images/humidity.png')}}"
-              alt=""
-            />
-            <div>
-              <p class="humidity">50%</p>
-              <p>Humidity</p>
+            <div class="col">
+                <img
+                        src="{{url_for('static', filename='assets/images/humidity.png')}}"
+                        alt=""
+                />
+                <div>
+                    <p class="humidity">50%</p>
+                    <p>Humidity</p>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <img
-              src="{{url_for('static', filename='assets/images/wind.png')}}"
-              alt=""
-            />
-            <div>
-              <p class="wind">15 m/s</p>
-              <p>Wind Speed</p>
+            <div class="col">
+                <img
+                        src="{{url_for('static', filename='assets/images/wind.png')}}"
+                        alt=""
+                />
+                <div>
+                    <p class="wind">15 m/s</p>
+                    <p>Wind Speed</p>
+                </div>
             </div>
-          </div>
         </div>
         <div class="details">
-          <div class="col">
-            <img
-              src="{{url_for('static', filename='assets/images/vis.png')}}"
-              alt=""
-            />
-            <div>
-              <p class="visibility">15 km</p>
-              <p>Visibility</p>
+            <div class="col">
+                <img
+                        src="{{url_for('static', filename='assets/images/vis.png')}}"
+                        alt=""
+                />
+                <div>
+                    <p class="visibility">15 km</p>
+                    <p>Visibility</p>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <img
-              src="{{url_for('static', filename='assets/images/pressure.png')}}"
-              alt=""
-            />
-            <div>
-              <p class="pressure">15 hPa</p>
-              <p>Pressure</p>
+            <div class="col">
+                <img
+                        src="{{url_for('static', filename='assets/images/pressure.png')}}"
+                        alt=""
+                />
+                <div>
+                    <p class="pressure">15 hPa</p>
+                    <p>Pressure</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="info">
-        <button id="infoBtn">
-          <i class="fas fa-info-circle"></i
-          ><img src="{{url_for('static', filename='assets/images/i.png')}}" />
-        </button>
-      </div>
     </div>
+    <div class="info">
+        <button id="infoBtn">
+            <i class="fas fa-info-circle"></i
+            ><img src="{{url_for('static', filename='assets/images/i.png')}}"/>
+        </button>
+    </div>
+</div>
 
-    <div class="popup" id="popup">
-      <div class="popup-content">
+<div class="popup" id="popup">
+    <div class="popup-content">
         <span class="close" id="closeBtn">&times;</span>
         <h2>Instructions</h2>
         <ul>
-          <li>Input city name for example New York</li>
-          <li>
-            To differentiate by a country use a ',' between city and country
-          </li>
-          <li>For instance: London, Great Britain or London, Canada</li>
-          <li>Country name has to be according to (ISO 3166)</li>
-          <li>
-            Like United States, Great Britain, Russian Federation, Japan, etc.
-          </li>
+            <li>Input city name for example New York</li>
+            <li>
+                To differentiate by a country use a ',' between city and country
+            </li>
+            <li>For instance: London, Great Britain or London, Canada</li>
+            <li>Country name has to be according to (ISO 3166)</li>
+            <li>
+                Like United States, Great Britain, Russian Federation, Japan, etc.
+            </li>
         </ul>
-      </div>
     </div>
-
-    <script>
+</div>
+<script src="{{url_for('static',filename='js/require.js')}}"></script>
+<script>
       function capitalize(str) {
         const words = str.split(" ");
         const capitalizedWords = words.map(
@@ -272,6 +279,7 @@
         .addEventListener("click", function () {
           document.getElementById("popup").style.display = "none";
         });
-    </script>
-  </body>
+
+</script>
+</body>
 </html>
