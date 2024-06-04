@@ -2,8 +2,10 @@
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-
   box-sizing: border-box;
+}
+html {
+font-size: 14px;
 }
 body {
   background: #222;
@@ -35,7 +37,7 @@ body {
   border-radius: 30px;
   flex: 1;
   margin-right: 16px;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .search button {
@@ -46,7 +48,7 @@ body {
   width: 60px;
   height: 60px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 1rem;
   margin: 2px;
 }
 
@@ -60,12 +62,12 @@ body {
 }
 
 .weather h1 {
-  font-size: 80px;
+  font-size: 5rem;
   font-weight: 500;
 }
 
 .weather h2 {
-  font-size: 45px;
+  font-size: 3rem;
   font-weight: 400;
   margin-top: -10px;
 }
@@ -92,7 +94,7 @@ body {
 .wind,
 .visibility,
 .pressure {
-  font-size: 28px;
+  font-size: 2rem;
   margin-top: -6px;
 }
 .weather {
@@ -101,7 +103,7 @@ body {
 .error {
   text-align: left;
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 1rem;
   margin-top: 10px;
 }
 .description {
@@ -112,7 +114,7 @@ body {
   .search input {
     height: 45px;
     max-width: 165px;
-    font-size: 16px;
+    font-size: 1rem;
   }
   .search button {
     height: 45px;
@@ -128,20 +130,20 @@ body {
   }
 
   .weather h1 {
-    font-size: 55px;
+    font-size: 5rem;
     font-weight: 500;
   }
 
   .weather h2 {
-    font-size: 35px;
+    font-size: 3rem;
     font-weight: 400;
     margin-top: 10px;
   }
   .weather h3 {
-    font-size: 18px;
+    font-size: 1.25rem;
   }
   .weather h4 {
-    font-size: 16px;
+    font-size: 1.15rem;
   }
   .col img {
     width: 30px;
@@ -151,7 +153,7 @@ body {
   .wind,
   .visibility,
   .pressure {
-    font-size: 18px;
+    font-size: 1.25rem;
   }
 
   .popup {
